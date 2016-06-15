@@ -59,7 +59,7 @@ I tried to remove outliers of salary, but 3 POIs are in the outliers so i cannot
  - (LAY KENNETH L, FASTOW ANDREW S, SKILLING JEFFREY K)
 
 
- ### 3. bonus
+### 3. bonus
  | MAX | MIN | MEAN | STD | 1IQR | MEDIAN | 3IQR |
  |:----|:----|:----|:----|:----|:----|:----|:----|
  | 8000000 | 70000 | 1201773.07 | 1432752.54 | 425000 | 750000 | 1200000 |
@@ -87,8 +87,22 @@ After I removed 'LAVARATO JOHN J':
 
 <img src="https://github.com/crespo86/uda-ml/raw/master/uda_figure_1-4.png" alt="Drawing" style="width: 200px;"/>
 
-## Data Adding
-Before I start, I added a feature named **'defer_rate_of_restrict_stock'** . This feature is calculated like _restricted_stock_deferred  /  restricted_stock_. I think POIs have more information about company so they might just have few restricted_stock_defered rate.
+# Feature selection
+
+## Adding data
+Before I start, I added a feature named **'defer_rate_of_restrict_stock'** . This feature is calculated like _restricted_stock_deferred  +  restricted_stock_. I think POIs have more information about company so they might just have few restricted_stock_defered.
+
+the Code is like this
+
+{% highlight python3 %}
+for a in data_dict:
+   if data_dict[a]['restricted_stock'] != 'NaN' and data_dict[a]['restricted_stock_deferred'] != 'NaN':
+       data_dict[a]['defer_of_restrict_stock'] = (data_dict[a]['restricted_stock'])+(data_dict[a]['restricted_stock_deferred'])
+   elif data_dict[a]['restricted_stock'] != 'NaN' and data_dict[a]['restricted_stock_deferred'] == 'NaN':
+       data_dict[a]['defer_of_restrict_stock'] = (data_dict[a]['restricted_stock'])
+   else:
+       data_dict[a]['defer_of_restrict_stock'] = 'NaN'
+{% endhighlight %}
 
 ### scatter plot of 'defer_rate_of_restrict_stock' and 'deferred_income'
 
