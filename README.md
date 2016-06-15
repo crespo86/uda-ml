@@ -39,7 +39,7 @@ I choose salary, bonus, exercised_stock_options, from_poi_to_this_person, and de
 
 Before I remove 'Total':
 
-![alt text](https://github.com/crespo86/uda-ml/figure_1-1.png "image 1")
+![alt text](https://crespo86.githun.io/images/uda/figure_1-1.png "image 1")
 
 
 ### 2.  salary
